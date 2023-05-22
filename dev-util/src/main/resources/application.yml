@@ -1,0 +1,13 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: dev-util
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        namespace: c1ac94d8-353d-4d66-94e8-20215215dbd8
+        username: nacos
+        password: nacos
