@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!--status = debug 日志框架本身的输出的日志级别，不是我们定义的日志，而是框架自身日志输出的级别-->
+        <!--monitorInterval 自动加载配置文件的间隔时间，不低于5s，可以实现热更新-->
+<Configuration status="debug" monitorInterval="5">
+    <!-- 集中配置属性进行管理  可以定义各种名称和对应的值 -->
+    <properties>
+        <property name="LOG_HOME">F:/logs</property>
+        <property name="FILE_NAME">mylog</property>
+        <property name="log.sql.level">info</property>
+    </properties>
+
+    <!--日志处理-->
+    <Appenders>
+        <!--控制台输出结果 appender-->
+        <!--target 为日志的等级，如果为 SYSTEM_OUT 是普通日志，为白色；如果是SYSTEM_ERR，则为报警颜色，红色-->
+        <Console name="Console" target="SYSTEM_OUT">
+            <!--日志输出的格式-->
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %l - %msg%n"/>
+        </Console>
+
+        <!-- 日志的文件输出 -->
+        <File name="file" fileName="${LOG_HOME}/myfile.log">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] %l %c{36} - %m%n"/>
+        </File>
+
+        <!--随机读写流实现文件日志的输出，性能得到了提高，功能和 name = file是一样的-->
+        <RandomAccessFile name="accessFile" fileName="${LOG_HOME}/myAcclog.log">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] %l %c{36} - %m%n"/>
+        </RandomAccessFile>
+
+        <!--按照一定的规则拆分日志文件的(比如按照天，按照小时拆分日志) appender-->
+        <RollingRandomAccessFile name="RollingRandomAccessFile" fileName="${LOG_HOME}/${FILE_NAME}.log"
+                                 filePattern="${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME}-%d{yyyy-MM-dd HH-mm}-%i.log">
+            <!--日志级别的过滤器-->
+            <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] %l %c{36} - %m%n"/>
+            <Policies>
+                <!--在系统启动时，触发拆分规则，生产一个新的日志文件-->
+                <OnStartupTriggeringPolicy/>
+                <!--按照时间的节点进行拆分，规则根据filePattern定义-->
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <!--按照10Mb大小为一个文件的上限-->
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <!--最多可以生成多少个日志文件，超出之后，最旧的会被覆盖-->
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+    <!--Logger定义-->
+    <Loggers>
+        <!--日志输出的等级，超过该等级的进行输出-->
+        <Root level="info">
+            <!--指定日志的处理器-->
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingRandomAccessFile"/>
+            <AppenderRef ref="file"/>
+            <AppenderRef ref="accessFile"/>
+        </Root>
+    </Loggers>
+
+</Configuration>

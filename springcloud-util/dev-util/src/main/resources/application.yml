@@ -1,0 +1,36 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: dev-util
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://139.224.104.233:8826/develop-util?serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: root
+    password: root
+  redis:
+    host: 127.0.0.1  # 主机地址
+    port: 6379
+    cache:
+      redis:
+        time-to-live: -1 #毫秒
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        namespace: c1ac94d8-353d-4d66-94e8-20215215dbd8
+        username: nacos
+        password: nacos
+mybatis-plus:
+  configuration:
+    #默认不显示SQL日志
+    #    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    cn:
+      panyucbale:
+        springboot:
+          mapper: debug
+
