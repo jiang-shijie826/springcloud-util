@@ -1,5 +1,7 @@
 package com.jiang;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.jiang.mapper.CarouselPictureMapper;
 import com.jiang.mapper.NavigationUrlMapper;
@@ -15,10 +17,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @SpringBootTest
@@ -96,11 +96,24 @@ public class MybatisPlusApplicationTests {
      */
     @Test
     public void test01() {
-        // 存入, 无过期时间
-        //redisTemplate.opsForValue().set("key1","value1");
-        //navigationUrl
+        String bing = "https://cn.bing.com";
+        String body = "{\"images\": [{\"url\": \"/th?id=OHR.ReefAwareness_ZH-CN8840949729_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp\"}]}";
+        JSONObject jsonObj = JSON.parseObject(body);
+        List<Object> images = (List<Object>) jsonObj.get("images");
+        if (!images.isEmpty()) {
+            JSONObject img = JSON.parseObject(images.get(0).toString());
+            Object url = img.get("url");
+            System.out.println(bing+url);
+        }
 
+    }
 
+    @Test
+    public void test02() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");//设置格式
+        Calendar calendar = Calendar.getInstance(); //创建Calendar 的实例
+        calendar.add(Calendar.DATE, -1); //当前时间减去一天，即一天前的时间
+        format.format(calendar.getTime());
     }
 
 }

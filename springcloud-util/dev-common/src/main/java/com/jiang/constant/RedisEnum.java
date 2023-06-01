@@ -32,7 +32,22 @@ public enum RedisEnum {
     /**
      * 导航地址
      */
-    NAVIGATION_URL("navigationUrl");
+    NAVIGATION_URL("navigationUrl"),
+
+    /**
+     * 当前日期
+     */
+    STARTDATE("startdate"),
+
+    /**
+     * 必应图片
+     */
+    BING_PICTURE("bingPic"),
+
+    /**
+     * 图片地址
+     */
+    URL("url");
 
     public final String value;
 }
