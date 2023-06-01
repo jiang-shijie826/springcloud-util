@@ -75,8 +75,8 @@ public class DatePickerServiceImpl implements DatePickerService {
             bingPicture.setStartDate(img.get("startdate").toString());
             bingPicture.setUrl("https://cn.bing.com" + img.get("url").toString());
         }
-        redisTemplate.opsForHash().put("bingPic", RedisEnum.STARTDATE.getValue(), bingPicture.getStartDate());
-        redisTemplate.opsForHash().put("bingPic", RedisEnum.URL.getValue(), bingPicture.getUrl());
+        redisTemplate.opsForHash().put(RedisEnum.BING_PICTURE.getValue(), RedisEnum.STARTDATE.getValue(), bingPicture.getStartDate());
+        redisTemplate.opsForHash().put(RedisEnum.BING_PICTURE.getValue(), RedisEnum.URL.getValue(), bingPicture.getUrl());
         return  bingPicture;
     }
 
