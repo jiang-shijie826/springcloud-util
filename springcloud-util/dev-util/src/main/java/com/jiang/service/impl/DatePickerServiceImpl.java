@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -65,10 +64,10 @@ public class DatePickerServiceImpl implements DatePickerService {
      * @return /
      */
     private BingPicture requestForBing() {
-        String url = "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
-        ResponseEntity<String> forEntity = restTemplate.getForEntity(url, String.class);
-        String body = forEntity.getBody();
-        JSONObject jsonObj = JSON.parseObject(body);
+        JSONObject jsonObj = JSON.parseObject(
+                restTemplate.getForEntity("https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1",
+                        String.class).getBody()
+        );
         List<Object> images = (List<Object>) jsonObj.get("images");
         BingPicture bingPicture = new BingPicture();
         if (!images.isEmpty()) {
