@@ -40,14 +40,16 @@ public class SearchNavigationServiceImpl implements SearchNavigationService {
     @Override
     public List<SearchNavigation> querySearchNavigation(int count) {
         List<SearchNavigation> searchList = redisTemplate.opsForList().range(RedisEnum.SEARCH_NAVIGATION.getValue(), 0, -1);
-        LOGGER.info("缓存读取的数据为:{}", searchList);
         if (Objects.isNull(searchList) || searchList.size() == 0) {
             QueryWrapper<SearchNavigation> wrapper = new QueryWrapper<>();
+            wrapper.orderByAsc("id");
             wrapper.last("limit " + count);
             List<SearchNavigation> searchNavigations = searchNavigationMapper.selectList(wrapper);
-            redisTemplate.opsForList().leftPushAll(RedisEnum.SEARCH_NAVIGATION.getValue(), searchNavigations);
+            redisTemplate.opsForList().rightPushAll(RedisEnum.SEARCH_NAVIGATION.getValue(), searchNavigations);
             searchList = new ArrayList<>(searchNavigations.size());
             searchList.addAll(searchNavigations);
+        }else {
+            LOGGER.info("缓存读取的数据为:{}", searchList);
         }
         return searchList;
     }
