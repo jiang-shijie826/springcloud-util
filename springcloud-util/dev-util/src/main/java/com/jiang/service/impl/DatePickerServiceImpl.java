@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.jiang.constant.RedisEnum;
 import com.jiang.pojo.BingPicture;
 import com.jiang.service.DatePickerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +27,7 @@ import java.util.Objects;
  */
 @Service
 public class DatePickerServiceImpl implements DatePickerService {
-
+    private static final Logger LOGGER  = LoggerFactory.getLogger(DatePickerServiceImpl.class);
     @Autowired
     private RestTemplate restTemplate;
 
@@ -42,6 +44,7 @@ public class DatePickerServiceImpl implements DatePickerService {
         }else {
             bingPicture.setStartDate(bingPic.get(RedisEnum.STARTDATE.getValue()).toString());
             bingPicture.setUrl(bingPic.get(RedisEnum.URL.getValue()).toString());
+            LOGGER.info("缓存读取的壁纸为:{}", bingPicture);
         }
         return bingPicture;
     }
