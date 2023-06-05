@@ -2,9 +2,8 @@ package com.jiang.service.impl;
 
 import com.jiang.pojo.SqlAutomaticSplicing;
 import com.jiang.service.SqlAutoSplService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,10 +11,9 @@ import org.springframework.stereotype.Service;
  * @create 2023/5/29
  * @desc Sql工具
  */
+@Slf4j
 @Service
 public class SqlAutoSplServiceImpl implements SqlAutoSplService {
-
-    private static final Logger LOGGER  = LoggerFactory.getLogger(SqlAutoSplServiceImpl.class);
 
     /**
      * sql替换语句
@@ -38,7 +36,7 @@ public class SqlAutoSplServiceImpl implements SqlAutoSplService {
             sqlStatement = sqlStatement.replaceFirst("\\?", split[0]);
         }
         sql.setReturnSql(sqlStatement);
-        LOGGER.info("替换的SQL语句为:{}", sqlStatement);
+        log.info("替换的SQL语句为:{}", sqlStatement);
         return sql;
     }
 }

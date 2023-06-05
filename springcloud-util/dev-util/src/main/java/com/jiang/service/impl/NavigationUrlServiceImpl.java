@@ -5,8 +5,7 @@ import com.jiang.constant.RedisEnum;
 import com.jiang.mapper.NavigationUrlMapper;
 import com.jiang.pojo.NavigationUrl;
 import com.jiang.service.NavigationUrlService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +18,9 @@ import java.util.stream.Collectors;
  * @create 2023/5/29
  * @desc 导航地址
  */
+@Slf4j
 @Service
 public class NavigationUrlServiceImpl implements NavigationUrlService {
-
-    private static final Logger LOGGER  = LoggerFactory.getLogger(NavigationUrlServiceImpl.class);
-
     @Resource
     private NavigationUrlMapper navigationUrlMapper;
 
@@ -33,7 +30,7 @@ public class NavigationUrlServiceImpl implements NavigationUrlService {
     @Override
     public List<Object> queryNavigationUrl() {
         List<Object> navigationList = redisTemplate.opsForList().range(RedisEnum.NAVIGATION_URL.getValue(), 0, -1);
-        LOGGER.info("缓存读取的数据为:{}", navigationList);
+        log.info("缓存读取的数据为:{}", navigationList);
         if (Objects.isNull(navigationList) || navigationList.size() == 0) {
             //数据库中查询数据
             List<NavigationUrl> navigationUrlList = navigationUrlMapper.selectList(null);

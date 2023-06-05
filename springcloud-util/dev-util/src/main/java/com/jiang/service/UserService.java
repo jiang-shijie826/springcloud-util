@@ -1,7 +1,10 @@
 package com.jiang.service;
 
+import com.jiang.constant.Result;
 import com.jiang.pojo.User;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * @author jiangsj
@@ -15,5 +18,11 @@ public interface UserService {
      * @param user /
      * @return /
      */
-    User checkUserLogin(User user);
+    Result<User> checkUserLogin(User user);
+
+    /**
+     * 查询所有用户
+     * @return /
+     */
+    List<User> queryAllUser();
 }

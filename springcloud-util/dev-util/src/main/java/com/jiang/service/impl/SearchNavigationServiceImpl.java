@@ -5,8 +5,7 @@ import com.jiang.constant.RedisEnum;
 import com.jiang.mapper.SearchNavigationMapper;
 import com.jiang.pojo.SearchNavigation;
 import com.jiang.service.SearchNavigationService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +19,9 @@ import java.util.Objects;
  * @create 2023/5/29
  * @desc 搜索导航
  */
+@Slf4j
 @Service
 public class SearchNavigationServiceImpl implements SearchNavigationService {
-
-    private static final Logger LOGGER  = LoggerFactory.getLogger(SearchNavigationServiceImpl.class);
 
     @Resource
     private SearchNavigationMapper searchNavigationMapper;
@@ -49,7 +47,7 @@ public class SearchNavigationServiceImpl implements SearchNavigationService {
             searchList = new ArrayList<>(searchNavigations.size());
             searchList.addAll(searchNavigations);
         }else {
-            LOGGER.info("缓存读取的数据为:{}", searchList);
+            log.info("缓存读取的数据为:{}", searchList);
         }
         return searchList;
     }

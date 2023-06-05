@@ -1,11 +1,13 @@
 package com.jiang.controller;
 
 
+import com.jiang.constant.Result;
 import com.jiang.pojo.User;
 import com.jiang.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author jiangsj
@@ -25,9 +27,19 @@ public class UserController {
      * @return /
      */
     @ResponseBody
-    @PostMapping("checkUser")
-    private User checkUserLogin(@RequestBody User user) {
+    @PostMapping("login")
+    private Result<User> checkUserLogin(@RequestBody User user) {
         return userService.checkUserLogin(user);
+    }
+
+    /**
+     * 查询所有用户
+     * @return /
+     */
+    @ResponseBody
+    @GetMapping("query")
+    private List<User> queryAllUser() {
+        return userService.queryAllUser();
     }
 
 }
