@@ -19,7 +19,6 @@ public class SearchNavigationController {
     @Resource
     private SearchNavigationService searchNavigationService;
 
-    @ResponseBody
     @GetMapping("query/{count}")
     public List<SearchNavigation> querySearchNavigation(@PathVariable int count){
         return searchNavigationService.querySearchNavigation(count);

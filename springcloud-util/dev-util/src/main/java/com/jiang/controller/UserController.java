@@ -26,7 +26,6 @@ public class UserController {
      * @param user /
      * @return /
      */
-    @ResponseBody
     @PostMapping("login")
     private Result<User> checkUserLogin(@RequestBody User user) {
         return userService.checkUserLogin(user);
@@ -36,7 +35,6 @@ public class UserController {
      * 查询所有用户
      * @return /
      */
-    @ResponseBody
     @GetMapping("query")
     private List<User> queryAllUser() {
         return userService.queryAllUser();

@@ -24,7 +24,6 @@ public class NavigationUrlController {
      * 查询所有导航地址
      * @return /
      */
-    @ResponseBody
     @GetMapping("queryAll")
     public List<Object> queryAllNavigationUrl() {
         return navigationUrlService.queryNavigationUrl();
@@ -33,13 +32,11 @@ public class NavigationUrlController {
     /**
      * 更新浏览次数
      */
-    @ResponseBody
     @PostMapping("updateCount")
     public void updateNavigationCount(@RequestBody NavigationUrl navigationUrl) {
         navigationUrlService.updateNavigationCount(navigationUrl);
     }
 
-    @ResponseBody
     @GetMapping("queryCommon")
     public Set<Object> queryCommonUrl() {
         return navigationUrlService.queryCommonUrl();

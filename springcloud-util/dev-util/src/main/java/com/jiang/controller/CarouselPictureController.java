@@ -24,7 +24,6 @@ public class CarouselPictureController {
      * @param count 轮播图片数量
      * @return /
      */
-    @ResponseBody
     @GetMapping("queryPicture/{count}")
     public List<CarouselPicture> queryPicture(@PathVariable int count){
         return pictureService.queryPicture(count);
