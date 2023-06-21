@@ -46,6 +46,7 @@ public class UserController {
      * @param user /
      * @return /
      */
+    @PostMapping("checkCode")
     public String checkCode(@RequestBody User user) {
         return userService.checkCode(user);
     }
