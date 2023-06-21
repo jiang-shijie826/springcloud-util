@@ -3,6 +3,7 @@ package com.jiang;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.google.code.kaptcha.Producer;
 import com.jiang.mapper.CarouselPictureMapper;
 import com.jiang.mapper.NavigationUrlMapper;
 import com.jiang.mapper.SearchNavigationMapper;
@@ -114,6 +115,19 @@ public class MybatisPlusApplicationTests {
         Calendar calendar = Calendar.getInstance(); //创建Calendar 的实例
         calendar.add(Calendar.DATE, -1); //当前时间减去一天，即一天前的时间
         format.format(calendar.getTime());
+    }
+
+    @Autowired
+    private Producer checkCode;
+
+    @Test
+    public void testCode() {
+        Object members = redisTemplate.opsForValue().get("code:776289764@qq.com");
+        if (Objects.isNull(members)) {
+            System.out.println("验证码已失效!");
+        }else {
+            System.out.println(members);
+        }
     }
 
 }

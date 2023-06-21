@@ -1,4 +1,4 @@
-package com.jiang.service.impl;
+package com.jiang.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.jiang.constant.RedisEnum;

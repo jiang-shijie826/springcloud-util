@@ -40,4 +40,14 @@ public class UserController {
         return userService.queryAllUser();
     }
 
+
+    /**
+     * 校验验证码
+     * @param user /
+     * @return /
+     */
+    public String checkCode(@RequestBody User user) {
+        return userService.checkCode(user);
+    }
+
 }

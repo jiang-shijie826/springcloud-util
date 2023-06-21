@@ -22,6 +22,24 @@ spring:
         namespace: c1ac94d8-353d-4d66-94e8-20215215dbd8
         username: nacos
         password: nacos
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+  # 发送邮件配置
+  # 发送邮件相关配置
+  mail:
+    host: smtp.qq.com # 此处使用的是qq邮箱进行邮件发送
+    username: shijie97@qq.com # 发送邮件的账号（也就是本人账号）
+    password: hdduyrllmsiibfhj # 账号秘钥（注意这不是登录你QQ邮箱的密码！该秘钥在开启SMTP服务时会给出。）
+    default-encoding: UTF-8 #编码风格
+    properties:
+      mail: 776289764@qq.com
+      smtp:
+      auth: true
+      socketFactory:
+      class: javax.net.ssl.SSLSocketFactory
 mybatis-plus:
   configuration:
     #默认不显示SQL日志

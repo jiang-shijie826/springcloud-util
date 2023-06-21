@@ -1,13 +1,14 @@
-package com.jiang.service.impl;
+package com.jiang.service;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.jiang.constant.Result;
 import com.jiang.mapper.UserMapper;
 import com.jiang.pojo.User;
-import com.jiang.service.UserService;
 import com.jiang.util.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -25,6 +26,9 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private UserMapper userMapper;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Override
     public Result<User> checkUserLogin(User user) {
@@ -48,5 +52,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> queryAllUser() {
         return userMapper.selectList(null);
+    }
+
+    @Override
+    public String checkCode(User user) {
+        Object members = redisTemplate.opsForValue().get("code:776289764@qq.com");
+        if (Objects.isNull(members)) {
+            System.out.println("验证码已失效!");
+        }else {
+            System.out.println(members);
+        }
+        return null;
     }
 }

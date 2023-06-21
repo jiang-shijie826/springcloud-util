@@ -25,4 +25,11 @@ public interface UserService {
      * @return /
      */
     List<User> queryAllUser();
+
+    /**
+     * 校验验证码
+     * @param user /
+     * @return /
+     */
+    String checkCode(User user);
 }
