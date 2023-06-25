@@ -1,4 +1,4 @@
-package com.jiang.service;
+package com.jiang.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jiang.constant.RedisEnum;

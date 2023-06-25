@@ -20,4 +20,8 @@ public class User implements Serializable {
 
     @TableField(exist=false)
     private String account;
+
+    @TableField(exist=false)
+    private String checkCode;
+
 }

@@ -1,9 +1,12 @@
-package com.jiang.service;
+package com.jiang.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.google.code.kaptcha.Producer;
 import com.jiang.constant.RabbitMQConfig;
+import com.jiang.constant.Result;
 import com.jiang.pojo.EmailDTO;
+import com.jiang.service.RabbitMQService;
+import com.jiang.util.ResultUtil;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -67,10 +70,10 @@ public class RabbitMQServiceImpl implements RabbitMQService {
     }
 
     @Override
-    public String sendCode(String username) {
+    public Result<?> sendCode(String username) {
         // 校验账号是否合法
         if (!checkEmail(username)) {
-            return "请输入正确邮箱";
+            return ResultUtil.failureMsg("请输入正确邮箱!");
         }
         // 生成六位随机验证码发送
         String code = checkCode.createText();
@@ -84,7 +87,7 @@ public class RabbitMQServiceImpl implements RabbitMQService {
                 new Message(JSON.toJSONBytes(emailDTO), new MessageProperties()));
         //将验证码存入redis，设置过期时间为5分钟
         redisTemplate.opsForValue().set(USER_CODE_KEY + username, code, CODE_EXPIRE_TIME, TimeUnit.SECONDS);
-        return "验证码发送成功!";
+        return ResultUtil.success("验证码发送成功!", code);
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.jiang.service;
 
+import com.jiang.constant.Result;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,5 +12,5 @@ import org.springframework.stereotype.Component;
 public interface RabbitMQService {
     String sendMsg(String msg);
 
-    String sendCode(String username);
+    Result<?> sendCode(String username);
 }

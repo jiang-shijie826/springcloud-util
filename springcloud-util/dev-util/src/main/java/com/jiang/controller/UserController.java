@@ -46,9 +46,9 @@ public class UserController {
      * @param user /
      * @return /
      */
-    @PostMapping("checkCode")
-    public String checkCode(@RequestBody User user) {
-        return userService.checkCode(user);
+    @PostMapping("registerUser")
+    public Result<?> registerUser(@RequestBody User user) {
+        return userService.registerUser(user);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.jiang.service;
+package com.jiang.service.impl;
 
 import com.jiang.pojo.SqlAutomaticSplicing;
 import com.jiang.service.SqlAutoSplService;

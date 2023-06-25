@@ -31,5 +31,5 @@ public interface UserService {
      * @param user /
      * @return /
      */
-    String checkCode(User user);
+    Result<?> registerUser(User user);
 }

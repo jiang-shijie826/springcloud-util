@@ -1,5 +1,6 @@
 package com.jiang.rabbit;
 
+import com.jiang.constant.Result;
 import com.jiang.service.RabbitMQService;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +31,7 @@ public class RabbitMqController {
      * @return /
      */
     @GetMapping("/users/code")
-    public String sendCode(String username) {
+    public Result<?> sendCode(String username) {
         return rabbitMqService.sendCode(username);
     }
 
