@@ -2,6 +2,7 @@ package com.jiang.service.impl;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jiang.constant.Result;
 import com.jiang.mapper.UserMapper;
 import com.jiang.pojo.User;
@@ -23,7 +24,7 @@ import java.util.Objects;
  */
 @Slf4j
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl  extends ServiceImpl<UserMapper, User> implements UserService {
 
     @Resource
     private UserMapper userMapper;
