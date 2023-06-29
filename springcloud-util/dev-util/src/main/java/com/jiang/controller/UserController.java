@@ -4,6 +4,7 @@ package com.jiang.controller;
 import com.jiang.constant.Result;
 import com.jiang.pojo.User;
 import com.jiang.service.UserService;
+import com.jiang.util.ResultUtil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -15,7 +16,7 @@ import java.util.List;
  * @desc 用户管理
  */
 @RestController
-@RequestMapping("/user")
+    @RequestMapping("/user")
 public class UserController {
 
     @Resource
@@ -38,6 +39,11 @@ public class UserController {
     @GetMapping("query")
     private List<User> queryAllUser() {
         return userService.queryAllUser();
+    }
+
+    @PostMapping("addUser")
+    public Result<?> addUser(@RequestBody User user) {
+        return userService.save(user) ? ResultUtil.success() : ResultUtil.failure();
     }
 
 

@@ -1,5 +1,6 @@
 package com.jiang.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.jiang.constant.Result;
 import com.jiang.pojo.User;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,7 @@ import java.util.List;
  * @desc 用户管理
  */
 @Component
-public interface UserService {
+public interface UserService extends IService<User> {
     /**
      * 校验用户登录
      * @param user /
