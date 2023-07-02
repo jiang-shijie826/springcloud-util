@@ -24,7 +24,7 @@ import java.util.Objects;
  */
 @Slf4j
 @Service
-public class UserServiceImpl  extends ServiceImpl<UserMapper, User> implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     @Resource
     private UserMapper userMapper;

@@ -16,7 +16,7 @@ import java.util.List;
  * @desc 用户管理
  */
 @RestController
-    @RequestMapping("/user")
+@RequestMapping("/user")
 public class UserController {
 
     @Resource

@@ -4,14 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.google.code.kaptcha.Producer;
-import com.jiang.mapper.CarouselPictureMapper;
-import com.jiang.mapper.NavigationUrlMapper;
-import com.jiang.mapper.SearchNavigationMapper;
-import com.jiang.mapper.UserMapper;
-import com.jiang.pojo.CarouselPicture;
-import com.jiang.pojo.NavigationUrl;
-import com.jiang.pojo.SearchNavigation;
-import com.jiang.pojo.User;
+import com.jiang.mapper.*;
+import com.jiang.pojo.*;
 import com.jiang.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -144,6 +138,16 @@ public class MybatisPlusApplicationTests {
         }else {
             System.out.println(members);
         }
+    }
+
+    @Autowired
+    private PhotoWallMapper photoWallMapper;
+    @Test
+    public void testWall() {
+        QueryWrapper<PhotoWall> wrapper = new QueryWrapper<>();
+        wrapper.eq("tag_id", 1);
+        List<PhotoWall> photoWalls = photoWallMapper.selectList(wrapper);
+        System.out.println(photoWalls);
     }
 
 
