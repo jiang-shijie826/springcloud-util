@@ -18,7 +18,7 @@ public class PhotoWallServiceImpl extends ServiceImpl<PhotoWallMapper, PhotoWall
     private PhotoWallMapper photoWallMapper;
 
     @Override
-    public List<PhotoWall> queryAllWallByTag(String tagId) {
+    public List<PhotoWall> queryAllWallByTag(int tagId) {
         QueryWrapper<PhotoWall> wrapper = new QueryWrapper<>();
         wrapper.eq("tag_id", tagId);
         return photoWallMapper.selectList(wrapper);

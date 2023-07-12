@@ -8,12 +8,12 @@ import java.io.Serializable;
 public class PhotoWall  implements Serializable {
     private String resourceId;
     private String title;
-    private String cover_type;
-    private String cover_path;
-    private String resource_path;
-    private String resource_width;
-    private String resource_height;
-    private String resource_type;
-    private String tag_id;
-    private String visible_flag;
+    private int coverType;
+    private String coverPath;
+    private String resourcePath;
+    private String resourceWidth;
+    private String resourceHeight;
+    private String resourceType;
+    private String tagId;
+    private int visibleFlag;
 }

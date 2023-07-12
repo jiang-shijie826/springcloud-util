@@ -8,5 +8,5 @@ import java.util.List;
 
 @Component
 public interface PhotoWallService  extends IService<PhotoWall> {
-    List<PhotoWall> queryAllWallByTag(String tagId);
+    List<PhotoWall> queryAllWallByTag(int tagId);
 }
