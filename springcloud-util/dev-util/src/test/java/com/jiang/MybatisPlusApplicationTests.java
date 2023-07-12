@@ -150,6 +150,16 @@ public class MybatisPlusApplicationTests {
         System.out.println(photoWalls);
     }
 
+    @Autowired
+    private PhotoTagMapper photoTagMapper;
+    @Test
+    public void testTag() {
+        QueryWrapper<PhotoTag> queryWrapper  = new QueryWrapper<>();
+        queryWrapper.orderByDesc("sort");
+        List<PhotoTag> list = photoTagMapper.selectList(queryWrapper);
+        System.out.println(list);
+    }
+
 
 
 }

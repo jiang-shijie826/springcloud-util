@@ -47,7 +47,10 @@ public enum RedisEnum {
     /**
      * 图片地址
      */
-    URL("url");
+    URL("url"),
+    WALL_TAG("wallTag"),
+
+    WALL_LIST("wallList");
 
     public final String value;
 }

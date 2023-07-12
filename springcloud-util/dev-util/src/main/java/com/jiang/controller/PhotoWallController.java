@@ -22,4 +22,7 @@ public class PhotoWallController {
     private Result<?> queryAllWallByTag(@PathVariable int tagId) {
         return ResultUtil.successData(photoWallService.queryAllWallByTag(tagId));
     }
+
+
+
 }
