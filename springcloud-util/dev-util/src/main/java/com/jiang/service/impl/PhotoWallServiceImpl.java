@@ -10,11 +10,13 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * @author 77628
+ */
 @Service
 public class PhotoWallServiceImpl extends ServiceImpl<PhotoWallMapper, PhotoWall> implements PhotoWallService {
 
     @Resource
-
     private PhotoWallMapper photoWallMapper;
 
     @Override
