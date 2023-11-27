@@ -1,5 +1,6 @@
 package com.jiang.service;
 
+import com.jiang.constant.Result;
 import com.jiang.pojo.SqlAutomaticSplicing;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,6 @@ public interface SqlAutoSplService {
      * @param sql /
      * @return /
      */
-    SqlAutomaticSplicing getReplaceSql(SqlAutomaticSplicing sql);
+    Result<?> getReplaceSql(SqlAutomaticSplicing sql);
 
 }

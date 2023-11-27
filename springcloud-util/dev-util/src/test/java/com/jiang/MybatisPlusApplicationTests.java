@@ -52,7 +52,7 @@ public class MybatisPlusApplicationTests {
     public void testPic(){
         System.out.println("--------selectAll method test-------");
         QueryWrapper<CarouselPicture> wrapper = new QueryWrapper();
-        wrapper.last("limit 2");
+        wrapper.last("limit 4");
         List<CarouselPicture> picList = pictureMapper.selectList(wrapper);
         picList.forEach(System.out::println);
     }

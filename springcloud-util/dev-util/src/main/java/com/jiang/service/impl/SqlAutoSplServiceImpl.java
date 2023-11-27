@@ -1,7 +1,9 @@
 package com.jiang.service.impl;
 
+import com.jiang.constant.Result;
 import com.jiang.pojo.SqlAutomaticSplicing;
 import com.jiang.service.SqlAutoSplService;
+import com.jiang.util.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
@@ -22,11 +24,22 @@ public class SqlAutoSplServiceImpl implements SqlAutoSplService {
      * @return /
      */
     @Override
-    public SqlAutomaticSplicing getReplaceSql(SqlAutomaticSplicing sql) {
+    public Result<?> getReplaceSql(SqlAutomaticSplicing sql) {
         //替换sql
         String sqlStatement = sql.getSqlStatement();
         String sqlPara =  StringUtils.deleteWhitespace(sql.getSqlPara());
         String[] paraSplit = sqlPara.split(",");
+        //判断参数是否正确
+        int count = 0;
+        char[] chars = sqlStatement.toCharArray();
+        for (char str : chars) {
+            if (str == '?') {
+                count++;
+            }
+        }
+        if (count != paraSplit.length) {
+            return ResultUtil.failureMsg("SQL参数有误,请检查!");
+        }
         for (String s : paraSplit) {
             String[] split = s.split("\\(");
             String type = split[1].replace(")", "");
@@ -37,6 +50,6 @@ public class SqlAutoSplServiceImpl implements SqlAutoSplService {
         }
         sql.setReturnSql(sqlStatement);
         log.info("替换的SQL语句为:{}", sqlStatement);
-        return sql;
+        return ResultUtil.successData(sql);
     }
 }

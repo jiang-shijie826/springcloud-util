@@ -6,7 +6,7 @@ spring:
     name: dev-util
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://139.224.104.233:8826/develop-util?serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    url: jdbc:mysql://localhost:3306/develop-util?serverTimezone=Asia/Shanghai&allowMultiQueries=true
     username: root
     password: root
   redis:
@@ -18,8 +18,8 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 139.224.104.233:8848
-        namespace: c1ac94d8-353d-4d66-94e8-20215215dbd8
+        server-addr: localhost:8848
+        namespace: a4b2eb9e-3b54-496a-b7e4-407ad36fb374
         username: nacos
         password: nacos
   rabbitmq:

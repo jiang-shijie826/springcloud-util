@@ -1,6 +1,7 @@
 package com.jiang.controller;
 
 
+import com.jiang.constant.Result;
 import com.jiang.pojo.SqlAutomaticSplicing;
 import com.jiang.service.SqlAutoSplService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,7 @@ public class SqlAutomaticSplicingController {
      * @return /
      */
     @PostMapping("replace")
-    public SqlAutomaticSplicing getReplaceSql(@RequestBody SqlAutomaticSplicing sql){
+    public Result<?> getReplaceSql(@RequestBody SqlAutomaticSplicing sql){
         return sqlAutoSplService.getReplaceSql(sql);
     }
 
